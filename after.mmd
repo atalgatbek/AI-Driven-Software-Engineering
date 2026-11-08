@@ -1,0 +1,32 @@
+flowchart TB
+  html["index.html<br/>loads scripts in layer order"]
+  subgraph ui["Presentation (src/ui)"]
+    ctrl["app.js - controller<br/>state: criteria, selectedRoomId, lastRequest<br/>F4 empty state · F5 refresh"]
+    rend["render.js<br/>room list, empty state, bookings,<br/>renderResult() (one place, textContent)"]
+  end
+  subgraph domain["Rules (src/domain) - pure functions"]
+    filt["filters.js<br/>parseAttendees · hasCapacity (F1)<br/>hasAllEquipment (F2) · filterRooms"]
+    avail["availability.js<br/>validateRequest (AC1, AC2)<br/>findConflict (AC4) · checkAvailability (AC3/F3)"]
+    time["time.js<br/>toMinutes · durationMinutes<br/>intervalsOverlap (half-open)"]
+  end
+  subgraph data["Data (src/data) - deep-frozen (AC5)"]
+    cfg["config.js<br/>now, opening hours, 120 min,<br/>equipment list, deepFreeze"]
+    rooms["rooms.js<br/>5 rooms, each with own bookings"]
+  end
+  tests["tests/unit · tests/regression (Node)<br/>tests/ui (Playwright)"]
+  html --> ctrl
+  ctrl --> rend
+  ctrl --> filt
+  ctrl --> avail
+  ctrl --> rooms
+  rend --> time
+  rend --> cfg
+  filt --> cfg
+  avail --> time
+  avail --> cfg
+  rooms --> cfg
+  tests --> domain
+  tests --> rooms
+  tests -.->|browser| html
+  classDef good fill:#fff,stroke:#000,stroke-width:2px,color:#000
+  class filt,avail,time good

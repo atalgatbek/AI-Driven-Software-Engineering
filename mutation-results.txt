@@ -1,0 +1,7 @@
+$ npm run mutation   # 2026-10-31 22:58 +05
+KILLED    F1 capacity >= becomes >  (1 failing tests)
+KILLED    F2 ALL becomes ANY  (5 failing tests)
+KILLED    AC2 120 limit off by one  (1 failing tests)
+KILLED    AC3/F3 blocked rule removed  (3 failing tests)
+KILLED    AC4 touching treated as overlap  (5 failing tests)
+Result: 5 / 5 mutants killed

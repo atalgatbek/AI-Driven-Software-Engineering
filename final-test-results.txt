@@ -1,0 +1,47 @@
+$ npm run test:all   # 2026-10-31 22:58 +05, node v22.23.4, playwright 1.63.0 (headless Chromium)
+
+> smart-campus-room-checker@2.0.0 test:all
+> node --test --test-reporter=spec "tests/**/*.test.js"
+
+✔ AC1: invalid format is rejected (2.473605ms)
+✔ AC1: end before start is rejected (0.624203ms)
+✔ AC1: start before fixed current time (09:30) is rejected (1.868955ms)
+✔ AC1: outside opening hours is rejected (0.42842ms)
+✔ AC1: empty start or end gives a clear message (moved from UI to domain) (0.592973ms)
+✔ AC1/AC6: UI and domain use one validation order (07:00–09:30 is IN_PAST, not TOO_LONG) (0.323708ms)
+✔ AC2 boundary: exactly 120 minutes is accepted (0.474059ms)
+✔ AC2 boundary: 121 minutes is rejected (0.242068ms)
+✔ AC3: blocked room is never available (0.666177ms)
+✔ AC4 boundary: touching interval (ends when a booking starts) is accepted (0.772414ms)
+✔ AC4 boundary: touching interval (starts when a booking ends) is accepted (0.44345ms)
+✔ AC4 boundary: overlapping interval is rejected (0.266928ms)
+✔ AC4 boundary: overlap by one minute is rejected (0.186578ms)
+✔ AC5: checking does not change booking data, catalog is deep-frozen (1.269161ms)
+✔ UI: start-up shows all rooms, first room selected, no script errors (425.582592ms)
+✔ UI: successful filtering by capacity and equipment (F1, F2) (351.672625ms)
+✔ UI: unsuccessful filtering shows a clear empty state and disables the check (F4) (360.306717ms)
+✔ UI: switching room refreshes the availability result (F5, F3) (573.316298ms)
+✔ UI: when a filter removes the selected room, selection and result move to a matching room (411.471063ms)
+✔ UI: original time rules still work in the page (AC1, AC2, AC4, AC6) (676.497485ms)
+✔ UI: layout is responsive on a 375px phone screen (AC6) (333.494566ms)
+✔ Catalog: at least four rooms, each with id, name, capacity, equipment, blocked, bookings (1.587645ms)
+✔ F1 boundary: exact capacity is included (24 attendees -> B-204 cap 24) (0.45108ms)
+✔ F1 boundary: insufficient capacity is excluded (25 attendees -> no B-204) (2.457358ms)
+✔ F2: room must contain ALL selected items, not just one (0.378795ms)
+✔ F2: no equipment selected means no equipment restriction (0.174869ms)
+✔ F1+F2 combined: 10 people with video conference -> only E-115 (blocked) (0.154904ms)
+✔ F3: blocked room may match filters but is never reported as available (0.679587ms)
+✔ F4: impossible requirements give an empty list (UI shows empty state) (0.167489ms)
+✔ F5: the check uses the selected room's own bookings (same time, different rooms) (0.695073ms)
+✔ Attendees input validation (1.383599ms)
+✔ Filtering does not change the catalog (AC5) (0.400886ms)
+✔ time: HH:MM parsing and validation (3.059567ms)
+✔ time: duration and half-open overlap (0.469001ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4060.211254

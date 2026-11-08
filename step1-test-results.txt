@@ -1,0 +1,23 @@
+$ npm test   # refactor step 1, baseline tests UNCHANGED, 2026-10-31 22:54 +05
+
+> smart-campus-room-checker@1.0.0 test
+> node --test --test-reporter=spec "tests/**/*.test.js"
+
+✔ AC1: invalid format is rejected (2.29426ms)
+✔ AC1: end before start is rejected (0.564495ms)
+✔ AC1: start before fixed current time (09:30) is rejected (0.341928ms)
+✔ AC1: outside opening hours is rejected (0.376674ms)
+✔ AC2: exactly 120 minutes is accepted (2.453743ms)
+✔ AC2: 121 minutes is rejected (0.238787ms)
+✔ AC3: blocked room is never available (0.525942ms)
+✔ AC4: touching interval (ends when a booking starts) is accepted (0.227907ms)
+✔ AC4: overlapping interval is rejected (0.676613ms)
+✔ AC5: checking does not change booking data (1.000791ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 146.328959

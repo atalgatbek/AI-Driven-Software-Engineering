@@ -1,0 +1,12 @@
+Check for design decision 3 (classic scripts instead of ES modules), 2026-10-31, headless Chromium (Playwright 1.63.0)
+
+Test page opened with file:// :
+  index.html: <script type="module">import {x} from "./m.js"; document.title = "loaded " + x;</script>
+  m.js:       export const x = 42;
+
+Result:
+  document.title = ""   (module did not load)
+  console: Access to script at 'file:///.../m.js' from origin 'null' has been blocked by CORS policy:
+           Cross origin requests are only supported for protocol schemes: http, https, ...
+
+Conclusion: an ES-module version would need a local web server; the classic-script version opens by double-click.

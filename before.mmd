@@ -1,0 +1,19 @@
+flowchart TB
+  html["index.html<br/>form + #result + list"]
+  subgraph app["app.js (one file, 108 lines)"]
+    direction TB
+    d["DATA<br/>NOW, OPEN, CLOSE<br/>ROOM (1 room), BOOKINGS"]
+    r["RULES<br/>checkAvailability()<br/>time parsing ×3"]
+    u1["UI<br/>onCheckClick()<br/>own 120-min check + parsing ×2<br/>4 × innerHTML messages"]
+    u2["UI<br/>renderBookings()<br/>parsing ×2, innerHTML"]
+  end
+  t["tests/baseline.test.js"]
+  html --> app
+  u1 --> r
+  u1 -.->|duplicated rule| r
+  r --> d
+  u1 --> d
+  u2 --> d
+  t --> r
+  classDef bad fill:#e6e6e6,stroke:#000,stroke-width:2px,stroke-dasharray:4 3,color:#000
+  class u1,u2 bad

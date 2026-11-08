@@ -1,0 +1,29 @@
+$ bash scripts/metrics.sh <baseline worktree>   # git tag v1-baseline, 2026-10-31 22:57 +05
+== Source files (non-blank lines) ==
+  ./app.js                           96
+  files: 1
+
+== Duplicated logic (lines that implement the same rule) ==
+  HH:MM -> minutes parsing      : 9
+  max-duration (120) checks     : 2
+  result-message markup builds  : 4
+  innerHTML writes              : 5
+  opening-hours magic numbers   : 1
+
+$ bash scripts/metrics.sh .   # final version
+== Source files (non-blank lines) ==
+  ./src/data/config.js               30
+  ./src/data/rooms.js                63
+  ./src/domain/availability.js       67
+  ./src/domain/filters.js            40
+  ./src/domain/time.js               24
+  ./src/ui/app.js                    84
+  ./src/ui/render.js                127
+  files: 7
+
+== Duplicated logic (lines that implement the same rule) ==
+  HH:MM -> minutes parsing      : 1
+  max-duration (120) checks     : 1
+  result-message markup builds  : 1
+  innerHTML writes              : 0
+  opening-hours magic numbers   : 0

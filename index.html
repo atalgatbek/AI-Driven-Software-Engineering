@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Smart Campus – Room Availability</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Smart Campus Room Availability</h1>
+    <p class="sub">Room: <strong id="room-name"></strong> · Today, Mon 2 Nov 2026 · Current time: <strong id="now"></strong></p>
+
+    <form id="check-form" class="card">
+      <label>Start <input type="time" id="start" required></label>
+      <label>End <input type="time" id="end" required></label>
+      <button type="submit">Check availability</button>
+    </form>
+
+    <div id="result" aria-live="polite"></div>
+
+    <section class="card">
+      <h2>Today's bookings</h2>
+      <ul id="bookings"></ul>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
